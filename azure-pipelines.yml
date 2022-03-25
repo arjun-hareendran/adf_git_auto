@@ -21,7 +21,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: '$(Build.Repository.LocalPath)/<folder-of-the-package.json-file>' #replace with the package.json folder
+    workingDir: '$(Build.Repository.LocalPath)/build' #replace with the package.json folder
     verbose: true
   displayName: 'Install npm package'
 
@@ -31,8 +31,8 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: '$(Build.Repository.LocalPath)/<folder-of-the-package.json-file>' #replace with the package.json folder
-    customCommand: 'run build validate $(Build.Repository.LocalPath)/<Root-folder-from-Git-configuration-settings-in-ADF> /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/testResourceGroup/providers/Microsoft.DataFactory/factories/<Your-Factory-Name>'
+    workingDir: '$(Build.Repository.LocalPath)/build' #replace with the package.json folder
+    customCommand: 'run build validate $(Build.Repository.LocalPath)/adf_git_auto /subscriptions/22659d5b-7a6f-4fba-870e-498e4fcc17f8/resourceGroups/testResourceGroup/providers/Microsoft.DataFactory/factories/ah-dev'
   displayName: 'Validate'
 
 # Validate and then generate the ARM template into the destination folder, which is the same as selecting "Publish" from the UX.
@@ -42,13 +42,13 @@ steps:
   inputs:
     command: 'custom'
     workingDir: '$(Build.Repository.LocalPath)/<folder-of-the-package.json-file>' #replace with the package.json folder
-    customCommand: 'run build export $(Build.Repository.LocalPath)/<Root-folder-from-Git-configuration-settings-in-ADF> /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/testResourceGroup/providers/Microsoft.DataFactory/factories/<Your-Factory-Name> "ArmTemplate"'
+    customCommand: 'run build export $(Build.Repository.LocalPath)/adf_git_auto /subscriptions/22659d5b-7a6f-4fba-870e-498e4fcc17f8/resourceGroups/testResourceGroup/providers/Microsoft.DataFactory/factories/ah-dev "ArmTemplate"'
   displayName: 'Validate and Generate ARM template'
 
 # Publish the artifact to be used as a source for a release pipeline.
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.Repository.LocalPath)/<folder-of-the-package.json-file>/ArmTemplate' #replace with the package.json folder
+    targetPath: '$(Build.Repository.LocalPath)/build/ArmTemplate' #replace with the package.json folder
     artifact: 'ArmTemplates'
     publishLocation: 'pipeline'
