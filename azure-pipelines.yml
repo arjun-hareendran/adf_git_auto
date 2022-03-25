@@ -55,3 +55,10 @@ jobs:
       targetPath: '$(Build.Repository.LocalPath)/build/ArmTemplate' #replace with the package.json folder
       artifact: 'ArmTemplates'
       publishLocation: 'pipeline'
+
+- task: CopyPublishBuildArtifacts@1
+  inputs:
+    CopyRoot: '$(Build.Repository.LocalPath)/build/ArmTemplate'
+    Contents: '*'
+    ArtifactName: 'Test'
+    ArtifactType: 'Container'
