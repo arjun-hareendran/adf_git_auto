@@ -6,8 +6,9 @@
 trigger:
 - main
 
-pool:
-  vmImage: 'windows-latest'
+- job: Windows
+  pool:
+    vmImage: 'windows-latest'
 
 steps:
 
