@@ -44,7 +44,7 @@ jobs:
   - task: Npm@1
     inputs:
       command: 'custom'
-      workingDir: '$(Build.Repository.LocalPath)/<folder-of-the-package.json-file>' #replace with the package.json folder
+      workingDir: '$(Build.Repository.LocalPath)/build' #replace with the package.json folder
       customCommand: 'run build export $(Build.Repository.LocalPath)/adf_git_auto /subscriptions/22659d5b-7a6f-4fba-870e-498e4fcc17f8/resourceGroups/testResourceGroup/providers/Microsoft.DataFactory/factories/ah-dev "ArmTemplate"'
     displayName: 'Validate and Generate ARM template'
 
