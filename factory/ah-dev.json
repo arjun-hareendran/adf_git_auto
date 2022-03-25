@@ -1,0 +1,9 @@
+{
+	"name": "ah-dev",
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d24ddd4d-15a4-43cf-953c-5ebfba962e1b",
+		"tenantId": "a1e7f409-f438-450d-a3bc-919d6123625b"
+	}
+}
